@@ -17,6 +17,7 @@ The setup contains:
 - `http-server` - A simple python server serving the compiled exploit java class file
 
 Further explanation can be reached here:
+https://research.checkpoint.com/2021/the-laconic-log4shell-faq/
 https://www.lunasec.io/docs/blog/log4j-zero-day/
 
 ## Usage
