@@ -1,0 +1,14 @@
+FROM openjdk:8u121-jdk as build
+
+COPY exploit /usr/app/
+WORKDIR /usr/app
+RUN javac Exploit.java
+
+FROM python:3.8
+
+RUN pip install httpserver
+
+COPY --from=build /usr/app/Exploit.class /server/
+WORKDIR /server
+
+ENTRYPOINT ["python", "-m", "http.server"]

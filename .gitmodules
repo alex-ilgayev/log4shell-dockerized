@@ -1,0 +1,4 @@
+[submodule "marshalsec"]
+	path = marshalsec
+	url = https://github.com/mbechler/marshalsec.git
+	branch = master

