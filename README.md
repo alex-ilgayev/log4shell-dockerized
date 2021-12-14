@@ -16,7 +16,7 @@ The setup contains:
 - `marshalsec` - An LDAP server serving the exploit to log4j JDNI request
 - `http-server` - A simple python server serving the compiled exploit java class file
 
-Further explanation cab be reached here:
+Further explanation can be reached here:
 https://www.lunasec.io/docs/blog/log4j-zero-day/
 
 ## Usage
