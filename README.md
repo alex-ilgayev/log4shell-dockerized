@@ -2,8 +2,18 @@
 
 Log4Shell (CVE-2021-44228) is a critical vulnerability in the popular log4j2 logging package.
 This vulnerability is extremely easy to exploit, and was fixed in log4j2 version 2.15.
-This repository combines several other repositories showcasing POC capabilities for the vulnrabilility but in fully dockerized environment.
-Executing the vulnerability demands: vulnerable code running log4j, an LDAP server receiving the request, and server serving the exploit as compiled java class.
+This repository goal is to automate and construct the environment through a single click by using `docker-compose` and containers.
+This could be useful for:
+
+- Testing difference java version easily.
+- Testing different payloads without heavy setup.
+- Capturing easily the traffic for security protection measures.
+
+The setup contains:
+
+- `vuln` - vulnarable code using log4j2
+- `marshalsec` - An LDAP server serving the exploit to log4j JDNI request
+- `httpserver` - A simple python server serving the compiled exploit java class file
 
 Further explanation cab be reached here:
 https://www.lunasec.io/docs/blog/log4j-zero-day/
